@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import CodeViewer from "@/components/code-viewer";
-import client from "@/lib/prisma";
 import type { Metadata } from "next";
 import { cache } from "react";
 
@@ -29,7 +28,7 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  // if process.env.DATABASE_URL is not set, throw an error
+  // Removed Prisma-specific checks
   if (typeof params.id !== "string") {
     notFound();
   }
@@ -44,9 +43,6 @@ export default async function Page({ params }: { params: { id: string } }) {
 }
 
 const getGeneratedAppByID = cache(async (id: string) => {
-  return client.generatedApp.findUnique({
-    where: {
-      id,
-    },
-  });
+  // Removed Prisma-specific database query
+  return null;
 });
