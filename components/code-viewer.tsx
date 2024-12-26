@@ -10,98 +10,17 @@ import { dracula as draculaTheme } from "@codesandbox/sandpack-themes";
 import dedent from "dedent";
 import "./code-viewer.css";
 
-export default function CodeViewer({
-  code,
-  showEditor = false,
-}: {
-  code: string;
-  showEditor?: boolean;
-}) {
-  return showEditor ? (
-    <Sandpack
-      options={{
-        showNavigator: true,
-        editorHeight: "80vh",
-        showTabs: false,
-        ...sharedOptions,
-      }}
-      files={{
-        "App.tsx": code,
-        ...sharedFiles,
-      }}
-      {...sharedProps}
-    />
-  ) : (
-    <SandpackProvider
-      files={{
-        "App.tsx": code,
-        ...sharedFiles,
-      }}
-      className="flex h-full w-full grow flex-col justify-center"
-      options={{ ...sharedOptions }}
-      {...sharedProps}
-    >
-      <SandpackPreview
-        className="flex h-full w-full grow flex-col justify-center p-4 md:pt-16"
-        showOpenInCodeSandbox={false}
-        showRefreshButton={false}
-      />
-    </SandpackProvider>
-  );
-}
-
-let sharedProps = {
-  template: "react-ts",
+const sharedOptions = {
   theme: draculaTheme,
-  customSetup: {
-    dependencies: {
-      "lucide-react": "latest",
-      recharts: "2.9.0",
-      "react-router-dom": "latest",
-      "@radix-ui/react-accordion": "^1.2.0",
-      "@radix-ui/react-alert-dialog": "^1.1.1",
-      "@radix-ui/react-aspect-ratio": "^1.1.0",
-      "@radix-ui/react-avatar": "^1.1.0",
-      "@radix-ui/react-checkbox": "^1.1.1",
-      "@radix-ui/react-collapsible": "^1.1.0",
-      "@radix-ui/react-dialog": "^1.1.1",
-      "@radix-ui/react-dropdown-menu": "^2.1.1",
-      "@radix-ui/react-hover-card": "^1.1.1",
-      "@radix-ui/react-label": "^2.1.0",
-      "@radix-ui/react-menubar": "^1.1.1",
-      "@radix-ui/react-navigation-menu": "^1.2.0",
-      "@radix-ui/react-popover": "^1.1.1",
-      "@radix-ui/react-progress": "^1.1.0",
-      "@radix-ui/react-radio-group": "^1.2.0",
-      "@radix-ui/react-select": "^2.1.1",
-      "@radix-ui/react-separator": "^1.1.0",
-      "@radix-ui/react-slider": "^1.2.0",
-      "@radix-ui/react-slot": "^1.1.0",
-      "@radix-ui/react-switch": "^1.1.0",
-      "@radix-ui/react-tabs": "^1.1.0",
-      "@radix-ui/react-toast": "^1.2.1",
-      "@radix-ui/react-toggle": "^1.1.0",
-      "@radix-ui/react-toggle-group": "^1.1.0",
-      "@radix-ui/react-tooltip": "^1.1.2",
-      "class-variance-authority": "^0.7.0",
-      clsx: "^2.1.1",
-      "date-fns": "^3.6.0",
-      "embla-carousel-react": "^8.1.8",
-      "react-day-picker": "^8.10.1",
-      "tailwind-merge": "^2.4.0",
-      "tailwindcss-animate": "^1.0.7",
-      vaul: "^0.9.1",
-    },
-  },
-} as const;
-
-let sharedOptions = {
+  showConsole: true,
+  showLineNumbers: true,
+  editorHeight: "50vh",
   externalResources: [
     "https://unpkg.com/@tailwindcss/ui/dist/tailwind-ui.min.css",
   ],
 };
 
-let sharedFiles = {
+const sharedFiles = {
   "/lib/utils.ts": shadcnComponents.utils,
   "/components/ui/accordion.tsx": shadcnComponents.accordian,
   "/components/ui/alert-dialog.tsx": shadcnComponents.alertDialog,
@@ -154,4 +73,130 @@ let sharedFiles = {
       </body>
     </html>
   `,
+  "/package.json": JSON.stringify({
+    dependencies: {
+      "lucide-react": "latest",
+      recharts: "2.9.0",
+      "react-router-dom": "latest",
+      "@radix-ui/react-accordion": "^1.2.0",
+      "@radix-ui/react-alert-dialog": "^1.1.1",
+      "@radix-ui/react-aspect-ratio": "^1.1.0",
+      "@radix-ui/react-avatar": "^1.1.0",
+      "@radix-ui/react-checkbox": "^1.1.1",
+      "@radix-ui/react-collapsible": "^1.1.0",
+      "@radix-ui/react-dialog": "^1.1.1",
+      "@radix-ui/react-dropdown-menu": "^2.1.1",
+      "@radix-ui/react-hover-card": "^1.1.1",
+      "@radix-ui/react-label": "^2.1.0",
+      "@radix-ui/react-menubar": "^1.1.1",
+      "@radix-ui/react-navigation-menu": "^1.2.0",
+      "@radix-ui/react-popover": "^1.1.1",
+      "@radix-ui/react-progress": "^1.1.0",
+      "@radix-ui/react-radio-group": "^1.2.0",
+      "@radix-ui/react-select": "^2.1.1",
+      "@radix-ui/react-separator": "^1.1.0",
+      "@radix-ui/react-slider": "^1.2.0",
+      "@radix-ui/react-slot": "^1.1.0",
+      "@radix-ui/react-switch": "^1.1.0",
+      "@radix-ui/react-tabs": "^1.1.0",
+      "@radix-ui/react-toast": "^1.2.1",
+      "@radix-ui/react-toggle": "^1.1.0",
+      "@radix-ui/react-toggle-group": "^1.1.0",
+      "@radix-ui/react-tooltip": "^1.1.2",
+      "class-variance-authority": "^0.7.0",
+      clsx: "^2.1.1",
+      "date-fns": "^3.6.0",
+      "embla-carousel-react": "^8.1.8",
+      "react-day-picker": "^8.10.1",
+      "tailwind-merge": "^2.4.0",
+      "tailwindcss-animate": "^1.0.7",
+      vaul: "^0.9.1",
+      react: "^18.0.0",
+      "react-dom": "^18.0.0",
+    },
+  }),
 };
+
+const sharedProps = {
+  template: "react-ts",
+  customSetup: {
+    dependencies: {
+      "lucide-react": "latest",
+      recharts: "2.9.0",
+      "react-router-dom": "latest",
+      "@radix-ui/react-accordion": "^1.2.0",
+      "@radix-ui/react-alert-dialog": "^1.1.1",
+      "@radix-ui/react-aspect-ratio": "^1.1.0",
+      "@radix-ui/react-avatar": "^1.1.0",
+      "@radix-ui/react-checkbox": "^1.1.1",
+      "@radix-ui/react-collapsible": "^1.1.0",
+      "@radix-ui/react-dialog": "^1.1.1",
+      "@radix-ui/react-dropdown-menu": "^2.1.1",
+      "@radix-ui/react-hover-card": "^1.1.1",
+      "@radix-ui/react-label": "^2.1.0",
+      "@radix-ui/react-menubar": "^1.1.1",
+      "@radix-ui/react-navigation-menu": "^1.2.0",
+      "@radix-ui/react-popover": "^1.1.1",
+      "@radix-ui/react-progress": "^1.1.0",
+      "@radix-ui/react-radio-group": "^1.2.0",
+      "@radix-ui/react-select": "^2.1.1",
+      "@radix-ui/react-separator": "^1.1.0",
+      "@radix-ui/react-slider": "^1.2.0",
+      "@radix-ui/react-slot": "^1.1.0",
+      "@radix-ui/react-switch": "^1.1.0",
+      "@radix-ui/react-tabs": "^1.1.0",
+      "@radix-ui/react-toast": "^1.2.1",
+      "@radix-ui/react-toggle": "^1.1.0",
+      "@radix-ui/react-toggle-group": "^1.1.0",
+      "@radix-ui/react-tooltip": "^1.1.2",
+      "class-variance-authority": "^0.7.0",
+      clsx: "^2.1.1",
+      "date-fns": "^3.6.0",
+      "embla-carousel-react": "^8.1.8",
+      "react-day-picker": "^8.10.1",
+      "tailwind-merge": "^2.4.0",
+      "tailwindcss-animate": "^1.0.7",
+      vaul: "^0.9.1",
+    },
+  },
+} as const;
+
+export default function CodeViewer({
+  code,
+  showEditor = false,
+}: {
+  code: string;
+  showEditor?: boolean;
+}) {
+  return showEditor ? (
+    <Sandpack
+      options={{
+        showNavigator: true,
+        editorHeight: "80vh",
+        showTabs: false,
+        ...sharedOptions,
+      }}
+      files={{
+        "App.tsx": code,
+        ...sharedFiles,
+      }}
+      {...sharedProps}
+    />
+  ) : (
+    <SandpackProvider
+      files={{
+        "App.tsx": code,
+        ...sharedFiles,
+      }}
+      className="flex h-full w-full grow flex-col justify-center"
+      options={{ ...sharedOptions }}
+      {...sharedProps}
+    >
+      <SandpackPreview
+        className="flex h-full w-full grow flex-col justify-center p-4 md:pt-16"
+        showOpenInCodeSandbox={false}
+        showRefreshButton={false}
+      />
+    </SandpackProvider>
+  );
+}
